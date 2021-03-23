@@ -2,7 +2,6 @@ defmodule BlogWeb.PostController do
   require IEx
 
   use BlogWeb, :controller
-  # use Debug.Web, :controller
 
   alias Blog.Posts
   alias Blog.Posts.Post
@@ -33,10 +32,10 @@ defmodule BlogWeb.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = 
+    post =
       id
-      |> Posts.get_post! 
-      |> Repo.preload([:comments])  
+      |> Posts.get_post!
+      |> Repo.preload([:comments])
     changeset = Comment.changeset(%Comment{}, %{})
     render(conn, "show.html", post: post, changeset: changeset)
   end
@@ -71,7 +70,7 @@ defmodule BlogWeb.PostController do
   end
 
   def add_comment(conn, %{"comment" => comment_params, "post_id" => post_id}) do
-    post = 
+    post =
       Posts.get_post!(post_id)
       |> Repo.preload([:comments])
 
@@ -81,7 +80,7 @@ defmodule BlogWeb.PostController do
         |> put_flash(:info, "Comment added :)")
         |> redirect(to: Routes.post_path(conn, :show, post))
 
-      {:error, _error} -> 
+      {:error, _error} ->
         conn
         |> put_flash(:error, "Comment not added :(")
         |> redirect(to: Routes.post_path(conn, :show, post))
