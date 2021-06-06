@@ -21,6 +21,7 @@
         <a href="<%= Routes.post_path(@conn, :index) %>" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/app-logo.png") %>" alt="Phoenix Blog Application"/>
         </a>
+        <h2>Blog Application</h2>
       </section>
     </header>
     <main role="main" class="container">
