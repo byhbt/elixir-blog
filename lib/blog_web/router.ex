@@ -16,8 +16,6 @@ defmodule BlogWeb.Router do
   scope "/", BlogWeb do
     pipe_through :browser
 
-    get "/", PostController, :index
-
     resources "/", PostController do
       post "/comment", PostController, :add_comment
     end
