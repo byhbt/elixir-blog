@@ -5,8 +5,8 @@ defmodule Blog.Comments do
 
   import Ecto.Query, warn: false
 
-  alias Blog.Repo
   alias Blog.Comments.Comment
+  alias Blog.Repo
 
   def list_comments do
     Repo.all(Comment)
