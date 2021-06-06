@@ -11,7 +11,8 @@ defmodule Blog.MixProject do
       start_permanent: Mix.env() == :prod,
       test_coverage: [tool: ExCoveralls],
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      elixirc_paths: elixirc_paths(Mix.env)
     ]
   end
 
@@ -38,6 +39,7 @@ defmodule Blog.MixProject do
       {:phoenix_ecto, "~> 4.1"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.4"},
+      {:ex_machina, "~> 2.7.0"},
       {:excoveralls, "~> 0.10", only: :test},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
@@ -91,3 +93,4 @@ defmodule Blog.MixProject do
     ]
   end
 end
+

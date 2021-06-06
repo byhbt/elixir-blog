@@ -1,17 +1,14 @@
-defmodule Blog.Posts.Post do
-  @moduledoc """
-  The Post context.
-  """
-
+defmodule Blog.Schemas.Post do
   use Ecto.Schema
 
   import Ecto.Changeset
 
-  alias Blog.Comments.Comment
+  alias Blog.Schemas.Comment
 
   schema "posts" do
     field :body, :string
     field :title, :string
+
     has_many :comments, Comment
 
     timestamps()

@@ -1,11 +1,10 @@
 defmodule Blog.PostsTest do
-  use Blog.DataCase
+  use Blog.DataCase, async: true
 
+  alias Blog.Schemas.Post
   alias Blog.Posts
 
   describe "posts" do
-    alias Blog.Posts.Post
-
     @valid_attrs %{body: "some body", title: "some title"}
     @update_attrs %{body: "some updated body", title: "some updated title"}
     @invalid_attrs %{body: nil, title: nil}
