@@ -1,4 +1,7 @@
 defmodule Blog.Comments do
+  @moduledoc """
+  The Comments context.
+  """
 
   import Ecto.Query, warn: false
 

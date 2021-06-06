@@ -80,6 +80,10 @@ defmodule Blog.MixProject do
         "credo --strict",
         "deps.unlock --check-unused",
         "format --check-formatted"
+      ],
+      fix: [
+        "deps.clean --unlock --unused",
+        "format"
       ]
     ]
   end

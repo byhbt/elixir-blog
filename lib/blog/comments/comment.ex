@@ -1,5 +1,10 @@
 defmodule Blog.Comments.Comment do
+  @moduledoc """
+  The Comment context.
+  """
+
   use Ecto.Schema
+
   import Ecto.Changeset
 
   alias Blog.Posts.Post
@@ -12,7 +17,7 @@ defmodule Blog.Comments.Comment do
     belongs_to(:post, Post)
 
     timestamps()
-  end 
+  end
 
   @doc false
   def changeset(comment, attrs) do

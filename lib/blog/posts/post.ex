@@ -1,5 +1,10 @@
 defmodule Blog.Posts.Post do
+  @moduledoc """
+  The Post context.
+  """
+
   use Ecto.Schema
+
   import Ecto.Changeset
 
   alias Blog.Comments.Comment

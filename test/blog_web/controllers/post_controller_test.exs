@@ -32,7 +32,6 @@ defmodule BlogWeb.PostControllerTest do
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.post_path(conn, :show, id)
-
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -73,6 +72,7 @@ defmodule BlogWeb.PostControllerTest do
     test "deletes chosen post", %{conn: conn, post: post} do
       conn = delete(conn, Routes.post_path(conn, :delete, post))
       assert redirected_to(conn) == Routes.post_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.post_path(conn, :show, post))
       end

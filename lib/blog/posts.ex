@@ -1,10 +1,14 @@
 defmodule Blog.Posts do
+  @moduledoc """
+  The Posts context.
+  """
+
   import Ecto.Query, warn: false
 
-  alias Blog.Repo
+  alias Blog.Comments
   alias Blog.Posts
   alias Blog.Posts.Post
-  alias Blog.Comments
+  alias Blog.Repo
 
   def list_posts do
     Repo.all(Post)
