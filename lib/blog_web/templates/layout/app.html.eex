@@ -18,7 +18,7 @@
             <% end %>
           </ul>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
+        <a href="<%= Routes.post_path(@conn, :index) %>" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/app-logo.png") %>" alt="Phoenix Blog Application"/>
         </a>
       </section>
