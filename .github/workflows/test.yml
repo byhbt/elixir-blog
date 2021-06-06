@@ -1,0 +1,93 @@
+name: "Test and Linter"
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  OTP_VERSION: "23.2"
+  ELIXIR_VERSION: "1.11.3"
+  NODE_VERSION: "14"
+  MIX_ENV: test
+  DB_HOST: localhost
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:12.3
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout the source code 🛎️
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Elixir 🔧
+        uses: erlef/setup-elixir@v1
+        with:
+          otp-version: ${{ env.OTP_VERSION }}
+          elixir-version: ${{ env.ELIXIR_VERSION }}
+
+      - name: Setup Node 🔧
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache Elixir build 📦
+        uses: actions/cache@v2
+        with:
+          path: |
+            _build
+            deps
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix-
+
+      - name: Cache Node npm 📦
+        uses: actions/cache@v2
+        with:
+          path: assets/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies 📦
+        run: mix deps.get
+
+      - name: Compile dependencies 💫
+        run: mix compile --warnings-as-errors --all-warnings
+
+      - name: Install Node modules 💫
+        run: npm --prefix assets install
+
+      - name: Compile assets
+        run: npm run --prefix assets deploy
+
+      - name: Create database ⌗
+        run: mix ecto.create
+
+      - name: Migrate database ⌗
+        run: mix ecto.migrate
+
+      - name: Run codebase check
+        run: mix codebase
+
+      - name: Run Tests
+        run: mix coverage
