@@ -13,13 +13,12 @@ defmodule BlogWeb.Router do
     plug :accepts, ["json"]
   end
 
-  
-
   scope "/", BlogWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
-    resources "/posts", PostController do
+    get "/", PostController, :index
+
+    resources "/", PostController do
       post "/comment", PostController, :add_comment
     end
   end
