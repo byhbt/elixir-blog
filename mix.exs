@@ -84,7 +84,8 @@ defmodule Blog.MixProject do
       fix: [
         "deps.clean --unlock --unused",
         "format"
-      ]
+      ],
+      "test.report": ["coveralls.html --raise"]
     ]
   end
 end

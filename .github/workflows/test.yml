@@ -86,8 +86,8 @@ jobs:
       - name: Migrate database 🗂
         run: mix ecto.migrate
 
-      - name: Run linter (Credo, ...) 🔬
+      - name: Run linter & Tests (Credo, Clean up deps, Tests) 🔬
         run: mix lint
 
-      - name: Run Tests 🚦
-        run: mix coverage
+      - name: Check code coverage 🚦
+        run: mix test.report
