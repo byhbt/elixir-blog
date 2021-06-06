@@ -35,6 +35,7 @@ defmodule Blog.MixProject do
     [
       {:phoenix, "~> 1.5.8"},
       {:phoenix_ecto, "~> 4.1"},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
@@ -56,10 +57,30 @@ defmodule Blog.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      "ecto.setup": [
+        "ecto.create",
+        "ecto.migrate",
+        "run priv/repo/seeds.exs"
+      ],
+      "ecto.reset": [
+        "ecto.drop",
+        "ecto.setup"
+      ],
+      setup: [
+        "deps.get",
+        "ecto.setup",
+        "cmd npm install --prefix assets"
+      ],
+      test: [
+        "ecto.create --quiet",
+        "ecto.migrate --quiet",
+        "test"
+      ],
+      lint: [
+        "credo --strict",
+        "deps.unlock --check-unused",
+        "format --check-formatted"
+      ]
     ]
   end
 end

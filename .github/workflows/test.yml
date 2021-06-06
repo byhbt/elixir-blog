@@ -1,4 +1,4 @@
-name: "Test and Linter"
+name: "Lint and Test the source code"
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: Cancel previous runs
+      - name: Cancel previous runs 🕹
         uses: styfle/cancel-workflow-action@0.8.0
         with:
           access_token: ${{ github.token }}
@@ -71,23 +71,23 @@ jobs:
       - name: Install Dependencies 📦
         run: mix deps.get
 
-      - name: Compile dependencies 💫
+      - name: Compile dependencies ⛓
         run: mix compile --warnings-as-errors --all-warnings
 
-      - name: Install Node modules 💫
+      - name: Install Node modules 🗜
         run: npm --prefix assets install
 
-      - name: Compile assets
+      - name: Compile assets 🎨
         run: npm run --prefix assets deploy
 
-      - name: Create database ⌗
+      - name: Create database 🗂
         run: mix ecto.create
 
-      - name: Migrate database ⌗
+      - name: Migrate database 🗂
         run: mix ecto.migrate
 
-      - name: Run codebase check
-        run: mix codebase
+      - name: Run linter (Credo, ...) 🔬
+        run: mix lint
 
-      - name: Run Tests
+      - name: Run Tests 🚦
         run: mix coverage
