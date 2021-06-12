@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '**/README.md'
 
 env:
   OTP_VERSION: "23.2"
