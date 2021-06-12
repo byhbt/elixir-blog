@@ -6,6 +6,12 @@ defmodule Blog.Factory do
   # with Ecto
   use ExMachina.Ecto, repo: Blog.Repo
 
+  def category_factory do
+    %Blog.Content.Schemas.Category{
+      name: "Animals World"
+    }
+  end
+
   def post_factory do
     title = sequence(:title, &"Use ExMachina! (Part #{&1})")
     # derived attribute

@@ -1,6 +1,6 @@
 defmodule Blog.Content.Categories do
   @moduledoc """
-  The Content context.
+  The Category context.
   """
 
   import Ecto.Query, warn: false

@@ -4,6 +4,8 @@ defmodule Blog.Content.CategoriesTest do
   alias Blog.Content.Categories
   alias Blog.Content.Schemas.Category
 
+  import Blog.Factory
+
   describe "categories" do
     @valid_attrs %{name: "some name"}
     @update_attrs %{name: "some updated name"}
@@ -13,18 +15,18 @@ defmodule Blog.Content.CategoriesTest do
       {:ok, category} =
         attrs
         |> Enum.into(@valid_attrs)
-        |> Content.create_category()
+        |> Categories.create_category()
 
       category
     end
 
     test "list_categories/0 returns all categories" do
-      category = category_fixture()
+      category = insert(:category)
       assert Categories.list_categories() == [category]
     end
 
     test "get_category!/1 returns the category with given id" do
-      category = category_fixture()
+      category = insert(:category)
       assert Categories.get_category!(category.id) == category
     end
 
@@ -46,7 +48,7 @@ defmodule Blog.Content.CategoriesTest do
     test "update_category/2 with invalid data returns error changeset" do
       category = category_fixture()
       assert {:error, %Ecto.Changeset{}} = Categories.update_category(category, @invalid_attrs)
-      assert category == Content.get_category!(category.id)
+      assert category == Categories.get_category!(category.id)
     end
 
     test "delete_category/1 deletes the category" do

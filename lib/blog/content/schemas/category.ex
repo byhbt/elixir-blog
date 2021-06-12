@@ -5,6 +5,8 @@ defmodule Blog.Content.Schemas.Category do
 
   import Ecto.Changeset
 
+  alias Blog.Content.Schemas.Post
+
   use Ecto.Schema
 
   schema "categories" do
