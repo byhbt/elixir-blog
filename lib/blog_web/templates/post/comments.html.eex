@@ -1,4 +1,4 @@
-<h2>The comment list</h2>
+<h2>Comments</h2>
 <%= for comment <- @comments do %>
 	<div class="comments">
 		<div><%= comment.name %></div>

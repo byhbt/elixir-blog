@@ -9,7 +9,6 @@ defmodule Blog.Schemas.Comment do
     field :content, :string
     field :name, :string
 
-    # field :post_id, :id
     belongs_to(:post, Post)
 
     timestamps()

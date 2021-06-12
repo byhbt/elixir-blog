@@ -11,26 +11,25 @@
   <body>
     <header>
       <section class="container">
-        <nav role="navigation">
-          <ul>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
-        <a href="<%= Routes.post_path(@conn, :index) %>" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/app-logo.png") %>" alt="Phoenix Blog Application"/>
-        </a>
-        <h2>Blog Application</h2>
+        <div class="header-content">
+          <a href="<%= Routes.post_path(@conn, :index) %>" class="phx-logo">
+            <img src="<%= Routes.static_path(@conn, "/images/app-logo.png") %>" alt="Phoenix Blog Application"/>
+          </a>
+          <h2>Blog Application</h2>
+        </div>
       </section>
     </header>
     <main role="main" class="container">
-      <p class="alert alert-info" role="alert">
-        <%= get_flash(@conn, :info) %>
-      </p>
-      <p class="alert alert-danger" role="alert">
-        <%= get_flash(@conn, :error) %>
-      </p>
+      <%= if get_flash(@conn, :info) do %>
+        <p class="alert alert-info" role="alert">
+          <%= get_flash(@conn, :info) %>
+        </p>
+      <% end %>
+      <%= if get_flash(@conn, :info) do %>
+        <p class="alert alert-danger" role="alert">
+          <%= get_flash(@conn, :error) %>
+        </p>
+      <% end %>
 
       <%= @inner_content %>
     </main>
