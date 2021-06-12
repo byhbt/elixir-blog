@@ -7,8 +7,8 @@ defmodule Blog.Content.Posts do
 
   alias Blog.Content.Comments
   alias Blog.Content.Posts
-  alias Blog.Repo
   alias Blog.Content.Schemas.Post
+  alias Blog.Repo
 
   def list_posts do
     Repo.all(Post)

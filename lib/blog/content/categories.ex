@@ -5,8 +5,8 @@ defmodule Blog.Content.Categories do
 
   import Ecto.Query, warn: false
 
-  alias Blog.Repo
   alias Blog.Content.Schemas.Category
+  alias Blog.Repo
 
   @doc """
   Returns the list of categories.
