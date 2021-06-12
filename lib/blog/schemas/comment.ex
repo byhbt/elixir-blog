@@ -1,9 +1,13 @@
 defmodule Blog.Schemas.Comment do
-  use Ecto.Schema
+  @moduledoc """
+  This module defines Schema for the Comment.
+  """
 
   alias Blog.Schemas.Post
 
   import Ecto.Changeset
+
+  use Ecto.Schema
 
   schema "comments" do
     field :content, :string

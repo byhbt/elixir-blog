@@ -1,8 +1,8 @@
 defmodule Blog.PostsTest do
   use Blog.DataCase, async: true
 
-  alias Blog.Schemas.Post
   alias Blog.Posts
+  alias Blog.Schemas.Post
 
   import Blog.Factory
 
@@ -29,8 +29,10 @@ defmodule Blog.PostsTest do
 
     test "update_post/2 with valid data updates the post" do
       post = insert(:post)
-      {:ok, %Post{} = post} = Posts.update_post(post, %{body: "some updated body", title: "some updated title"})
-      
+
+      {:ok, %Post{} = post} =
+        Posts.update_post(post, %{body: "some updated body", title: "some updated title"})
+
       assert post.body == "some updated body"
       assert post.title == "some updated title"
     end

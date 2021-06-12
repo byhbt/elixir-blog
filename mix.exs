@@ -12,7 +12,7 @@ defmodule Blog.MixProject do
       test_coverage: [tool: ExCoveralls],
       aliases: aliases(),
       deps: deps(),
-      elixirc_paths: elixirc_paths(Mix.env)
+      elixirc_paths: elixirc_paths(Mix.env())
     ]
   end
 
@@ -49,7 +49,7 @@ defmodule Blog.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
+      {:telemetry_poller, "~> 0.4"}
     ]
   end
 
@@ -93,4 +93,3 @@ defmodule Blog.MixProject do
     ]
   end
 end
-

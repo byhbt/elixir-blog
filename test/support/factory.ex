@@ -1,4 +1,8 @@
 defmodule Blog.Factory do
+  @moduledoc """
+  This module defines the factories use in tests.
+  """
+
   # with Ecto
   use ExMachina.Ecto, repo: Blog.Repo
 
@@ -7,7 +11,8 @@ defmodule Blog.Factory do
     # derived attribute
     %Blog.Schemas.Post{
       title: title,
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      body:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     }
   end
 

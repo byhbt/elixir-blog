@@ -5,10 +5,10 @@ defmodule Blog.Posts do
 
   import Ecto.Query, warn: false
 
-  alias Blog.Schemas.Post
-  alias Blog.Repo
-  alias Blog.Posts
   alias Blog.Comments
+  alias Blog.Posts
+  alias Blog.Repo
+  alias Blog.Schemas.Post
 
   def list_posts do
     Repo.all(Post)

@@ -7,10 +7,6 @@ defmodule Blog.CommentsTest do
   import Blog.Factory
 
   describe "comments" do
-    # @valid_attrs %{content: "some content", name: "some name"}
-    @update_attrs %{content: "some updated content", name: "some updated name"}
-    @invalid_attrs %{content: nil, name: nil}
-
     test "list_comments/0 returns all comments" do
       %{id: comment_id} = insert(:comment)
       assert [%Comment{id: ^comment_id}] = Comments.list_comments()
@@ -21,36 +17,38 @@ defmodule Blog.CommentsTest do
       assert %Comment{id: ^comment_id} = Comments.get_comment!(comment.id)
     end
 
-    # test "create_comment/1 with valid data creates a comment" do
-    #   post = insert(:post)
-    #   # comment_params = build(:comment, post: post)
+    test "create_comment/1 with valid data creates a comment" do
+      post = insert(:post)
+      comment_params = params_with_assocs(:comment, post: post)
 
-    #   comment_params = %Comment{
-    #     content: "some content", 
-    #     name: "some name",
-    #     post_id: post.id,
-    #   }
-
-    #   comment = Comments.create_comment(comment_params)
-    #   # assert {:ok, %Comment{} = comment} = Comments.create_comment(comment_params)
-    #   assert comment.content == "some content"
-    #   assert comment.name == "some name"
-    # end
+      {:ok, %Comment{} = comment} = Comments.create_comment(comment_params)
+      assert comment.content == comment_params.content
+      assert comment.name == comment_params.name
+    end
 
     test "create_comment/1 with invalid data returns error changeset" do
-      assert {:error, %Ecto.Changeset{}} = Comments.create_comment(@invalid_attrs)
+      assert {:error, %Ecto.Changeset{}} = Comments.create_comment(%{content: nil, name: nil})
     end
 
     test "update_comment/2 with valid data updates the comment" do
       comment = insert(:comment)
-      assert {:ok, %Comment{} = comment} = Comments.update_comment(comment, @update_attrs)
+
+      assert {:ok, %Comment{} = comment} =
+               Comments.update_comment(comment, %{
+                 content: "some updated content",
+                 name: "some updated name"
+               })
+
       assert comment.content == "some updated content"
       assert comment.name == "some updated name"
     end
 
     test "update_comment/2 with invalid data returns error changeset" do
       comment = %{id: comment_id} = insert(:comment)
-      assert {:error, %Ecto.Changeset{}} = Comments.update_comment(comment, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Comments.update_comment(comment, %{content: nil, name: nil})
+
       assert %{id: _comment_id} = Comments.get_comment!(comment_id)
     end
 
