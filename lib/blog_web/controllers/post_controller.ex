@@ -1,7 +1,6 @@
 defmodule BlogWeb.PostController do
   use BlogWeb, :controller
 
-  alias Blog.Content.Comments
   alias Blog.Content.Posts
   alias Blog.Content.Schemas.Comment
   alias Blog.Content.Schemas.Post
