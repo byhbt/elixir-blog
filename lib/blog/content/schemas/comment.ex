@@ -1,9 +1,9 @@
-defmodule Blog.Schemas.Comment do
+defmodule Blog.Content.Schemas.Comment do
   @moduledoc """
   This module defines Schema for the Comment.
   """
 
-  alias Blog.Schemas.Post
+  alias Blog.Content.Schemas.Post
 
   import Ecto.Changeset
 

@@ -1,13 +1,11 @@
 defmodule BlogWeb.PostController do
-  require IEx
-
   use BlogWeb, :controller
 
-  alias Blog.Comments.Comment
-  alias Blog.Posts
+  alias Blog.Content.Comments
+  alias Blog.Content.Posts
+  alias Blog.Content.Schemas.Comment
+  alias Blog.Content.Schemas.Post
   alias Blog.Repo
-  alias Blog.Schemas.Comment
-  alias Blog.Schemas.Post
 
   def index(conn, _params) do
     posts = Posts.list_posts()

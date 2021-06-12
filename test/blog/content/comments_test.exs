@@ -1,8 +1,8 @@
-defmodule Blog.CommentsTest do
+defmodule Blog.Content.CommentsTest do
   use Blog.DataCase, async: true
 
-  alias Blog.Comments
-  alias Blog.Schemas.Comment
+  alias Blog.Content.Comments
+  alias Blog.Content.Schemas.Comment
 
   import Blog.Factory
 

@@ -1,4 +1,4 @@
-defmodule Blog.Schemas.Post do
+defmodule Blog.Content.Schemas.Post do
   @moduledoc """
   This module defines Schema for the Post.
   """
@@ -7,12 +7,13 @@ defmodule Blog.Schemas.Post do
 
   import Ecto.Changeset
 
-  alias Blog.Schemas.Comment
+  alias Blog.Content.Schemas.Comment
 
   schema "posts" do
     field :body, :string
     field :title, :string
 
+    belongs_to(:category, Category)
     has_many :comments, Comment
 
     timestamps()
