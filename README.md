@@ -1,6 +1,7 @@
+
 # Elixir Blog App
 
-By using a default blog app, I try to improve it better than the default which is generated from the command.
+Blog application is a popular example for developers to learn a new web framework. I use it to learn Elixir, Phoenix, and Ecto.
 
 ## Features
 
@@ -13,3 +14,8 @@ By using a default blog app, I try to improve it better than the default which i
 
 - Add factories using ExMachina.
 - Extract the Schemas into separate module.
+
+## Database design
+
+![DB diagram](https://user-images.githubusercontent.com/948856/121792943-ed79bf00-cc24-11eb-905a-f59493bb0ec2.png)
+
