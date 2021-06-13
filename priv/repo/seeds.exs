@@ -9,3 +9,18 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Blog.Repo
+alias Blog.Content.Schemas.Category
+
+Repo.insert!(%Category{
+  name: "Business"
+})
+
+Repo.insert!(%Category{
+  name: "Technology"
+})
+
+Repo.insert!(%Category{
+  name: "Science"
+})

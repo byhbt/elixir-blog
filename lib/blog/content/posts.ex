@@ -7,6 +7,7 @@ defmodule Blog.Content.Posts do
 
   alias Blog.Content.Comments
   alias Blog.Content.Posts
+  alias Blog.Content.Schemas.Category
   alias Blog.Content.Schemas.Post
   alias Blog.Repo
 
@@ -15,6 +16,15 @@ defmodule Blog.Content.Posts do
   end
 
   def get_post!(id), do: Repo.get!(Post, id)
+
+  def get_by_category(category) do
+    query =
+      from(p in Post,
+        where: p.category_id == ^category.id
+      )
+
+    Repo.all(query)
+  end
 
   def create_post(attrs \\ %{}) do
     %Post{}

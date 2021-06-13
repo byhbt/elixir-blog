@@ -19,6 +19,8 @@ defmodule BlogWeb.Router do
     resources "/", PostController do
       post "/comment", PostController, :add_comment
     end
+
+    resources "/category", CategoryController, only: [:show]
   end
 
   # Other scopes may use custom stacks.

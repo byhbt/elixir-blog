@@ -1,6 +1,7 @@
 defmodule BlogWeb.PostController do
   use BlogWeb, :controller
 
+  alias Blog.Content.Categories
   alias Blog.Content.Posts
   alias Blog.Content.Schemas.Comment
   alias Blog.Content.Schemas.Post
@@ -8,7 +9,9 @@ defmodule BlogWeb.PostController do
 
   def index(conn, _params) do
     posts = Posts.list_posts()
-    render(conn, "index.html", posts: posts)
+    categories = Categories.list_categories()
+
+    render(conn, "index.html", posts: posts, categories: categories)
   end
 
   def new(conn, _params) do
