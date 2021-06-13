@@ -3,8 +3,6 @@ defmodule BlogWeb.CategoryController do
 
   alias Blog.Content.Categories
   alias Blog.Content.Posts
-  alias Blog.Content.Schemas.Post
-  alias Blog.Repo
 
   def show(conn, params) do
     category = Categories.get_category!(params["id"])

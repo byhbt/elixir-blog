@@ -7,7 +7,6 @@ defmodule Blog.Content.Posts do
 
   alias Blog.Content.Comments
   alias Blog.Content.Posts
-  alias Blog.Content.Schemas.Category
   alias Blog.Content.Schemas.Post
   alias Blog.Repo
 
